@@ -1,47 +1,56 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CompProject02
 {
     class Equation
     {
-        public string EquationForm { get; private set; }
+        public string[] GetMatrixAugRow { get; }
+        public string GetFormOfEquation { get; }
 
         public Equation(string augmentedEquation)
         {
-            this.EquationForm = setEquation(augmentedEquation);
+            this.GetMatrixAugRow = SetMatrixRow(augmentedEquation);
+            this.GetFormOfEquation = SetFormOfEquation(GetMatrixAugRow);
         }
 
-        public static string setEquation(string augmentedEquation) {
-
-            string[] equations = augmentedEquation.Split(null);
-
-            int Index = 1;
-            string equation = string.Empty;
-            for (int i = 0; i < equations.Length; i++)
+        private string[] SetMatrixRow(string Input)
+        {
+            for (int i = 0; i < Input.Length; i++)
             {
-                if(i == 0)
+                if (!double.TryParse(Input[i].ToString(), out double val) && Input[i] != ' ' && Input[i] != '-')
+                    throw new Exception("Wrong character detected");
+            }
+            string[] splittedEquation = Input.Split(' ');
+
+            return splittedEquation;
+        }
+
+        private string SetFormOfEquation(string[] Equations)
+        {
+            int Index = 1;
+            string equation = null;
+
+            for (int i = 0; i < Equations.Length; i++)
+            {
+                if (i == 0)
                 {
-                    equation += equations[i] + "*x" + Index;
+                    equation += Equations[i] + "*x" + Index;
                     Index++;
                 }
 
-                else if(i == equations.Length-1)
+                else if (i == Equations.Length - 1)
                 {
-                    equation += " = " + equations[i];
+                    equation += " = " + Equations[i];
                 }
 
                 else
                 {
-                    equation += " + " + equations[i] + "*x" + Index;
+                    equation += " + " + Equations[i] + "*x" + Index;
                     Index++;
                 }
             }
+
             return equation;
         }
-
     }
 }

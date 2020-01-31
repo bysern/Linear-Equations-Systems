@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CompProject02
 {
@@ -17,18 +13,29 @@ namespace CompProject02
             EquationActions equationActions = new EquationActions();
             int EquationNumber = 1;
 
-            while (true)
+            try
             {
-                Console.Write($"Eq #{EquationNumber}: ");
-                string inputUser = Console.ReadLine();
-                if(inputUser.ToLower() == "end")
+                while (true)
                 {
-                    break;
+                    Console.Write($"Eq #{EquationNumber}: ");
+                    string inputUser = Console.ReadLine();
+                    if (inputUser.ToLower() == "end")
+                    {
+                        break;
+                    }
+                    equationActions.AddEquation(new Equation(inputUser));
+                    EquationNumber++;
                 }
-                equationActions.AddEquation(new Equation(inputUser));
-                EquationNumber++;
+                equationActions.PrintEquation();
+
+                Console.WriteLine("And solutions are: ");
+                equationActions.PrintSolution();
             }
-            equationActions.PrintEquation();
+
+            catch(Exception Ex)
+            {
+                Console.WriteLine(Ex.Message + " Try again");
+            }
         }
     }
 }

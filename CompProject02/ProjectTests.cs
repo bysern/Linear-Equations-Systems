@@ -1,5 +1,4 @@
-﻿using System;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
 namespace CompProject02
 {
@@ -7,12 +6,14 @@ namespace CompProject02
     class ProjectTests
     {
         [Test]
-        public void TestSettingEquation()
+        public void TestOfEquationForm()
         {
-            //Equation equation = new Equation();
-            Assert.That(Equation.setEquation("1 2 3"), Is.EqualTo("1*x1 + 2*x2 = 3"));
+            Equation eq = new Equation("4 5 6");
+            Assert.That(eq.GetFormOfEquation, Is.EqualTo("4*x1 + 5*x2 = 6"));
         }
-        
+
+
+
 
     }
 }

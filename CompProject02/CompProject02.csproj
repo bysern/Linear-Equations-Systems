@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="Equation.cs" />
     <Compile Include="EquationActions.cs" />
+    <Compile Include="NumericalOperations.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="ProjectTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
